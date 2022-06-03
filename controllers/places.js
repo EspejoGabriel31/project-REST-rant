@@ -1,12 +1,22 @@
 const router = require('express').Router()
 const places = require('../models/places.js')
 
+
+
 router.get('/new',(req, res) => {
     res.render('places/new')
 })
 
+router.get('/:id/edit', (req,res) =>{
+    console.log(req.params.id)
+    res.render('places/edit', {
+        place: places[req.params.id],
+        index: req.params.id
+    })
+    // res.render('places/edit')
+})
+
 router.post('/', (req, res) => {
-    // console.log(req.body)
     if (!req.body.pic) {
       // Default image if one is not provided
       req.body.pic = 'http://placekitten.com/400/400'
@@ -34,7 +44,7 @@ router.get('/:id', (req, res) => {
     res.render('error404')
   }
   else{
-    res.render('places/show', { place: places[id] })
+    res.render('places/show', { place: places[id], id })
 
   }
 })

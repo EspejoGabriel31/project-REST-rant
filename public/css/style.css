@@ -1,8 +1,11 @@
-h1 {
+  h1 {
     text-align: center;
     color: cornflowerblue;
   }
   
+  h2{
+    color: lightblue;
+  }
 
   nav{
     background-color: cornflowerblue;
@@ -34,9 +37,17 @@ h1 {
     text-align: center;
   }
   
+  img {
+    width: 100%;
+  }
+
   main {
+    padding: 20px;
     margin-right: 20px;
     margin-left: 20px;
     background-color: white;
   }
   
+  /* #comment-section{
+    padding: 20px;
+  } */
