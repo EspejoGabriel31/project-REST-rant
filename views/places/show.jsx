@@ -1,17 +1,18 @@
 const React = require('react')
 const Def = require('../default')
 
-function show (data) {
+function show ({place, id}) {
+
     return (
         <Def>
           <main>
             <div className='row' id='main-section'>
               <div className='col-sm-6'>
-                <img src={data.place.pic} alt={data.place.name} />
+                <img src={place.pic} alt={place.name} />
               </div>
               <div className='col-sm-6'>
                 <h1>
-                  { data.place.name }
+                  { place.name }
                 </h1>
                 <div>
                   <h2>Rating</h2>
@@ -19,15 +20,14 @@ function show (data) {
                 </div>
                 <div>
                   <h2>Description</h2>
-                  <p>Located in {data.place.city}, {data.place.state} and serving {data.place.cuisines}</p>
+                  <p>Located in {place.city}, {place.state} and serving {place.cuisines}</p>
                 </div>
 
-                {/* <a href={`/places/${data.id}/edit`} className="btn btn-warning">Edit</a>     
+                <a href={`/places/${id}/edit`} className="btn btn-warning">Edit</a>     
 
-                <form method="POST" action={`/places/${data.id}?_method=DELETE`}> 
+                <form method="POST" action={`/places/${id}?_method=DELETE`}> 
                   <button type="submit" className="btn btn-danger">Delete</button>
-
-                </form>  */}
+                </form> 
      
                
               </div>

@@ -33,8 +33,7 @@ router.get('/', (req, res) => {
     res.render('places/index', { places })
 })
 
-router.delete('/places/:id', (req, res) => {
-
+router.delete('/:id', (req, res) => {
   console.log("DELETE")
   let id = Number(req.params.id)
   if(isNaN(id)){
@@ -59,7 +58,8 @@ router.get('/:id', (req, res) => {
     res.render('error404')
   }
   else{
-    res.render('places/show', { place: places[id]})
+
+    res.render('places/show', { place: places[id], id})
 
   }
 })

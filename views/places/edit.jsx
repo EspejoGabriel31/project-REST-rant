@@ -3,7 +3,6 @@ const Def = require('../default')
 
 
 function edit_form({place, index}){
-    console.log(place + " " + index)
     return (
         <Def>
             <main>
