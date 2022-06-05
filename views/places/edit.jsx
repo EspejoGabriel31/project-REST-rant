@@ -1,8 +1,9 @@
 const React = require('react')
 const Def = require('../default')
 
-// function edit_form(){
+
 function edit_form({place, index}){
+    console.log(place + " " + index)
     return (
         <Def>
             <main>
@@ -51,7 +52,7 @@ function edit_form({place, index}){
                             required
                         />
                     </div>
-                    <input className="btn btn-primary" type="submit" value="Add Place" />
+                    <input className="btn btn-primary" type="submit" value="Edit Place" />
                 </form>
             </main>
         </Def>
