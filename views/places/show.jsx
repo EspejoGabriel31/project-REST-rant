@@ -1,7 +1,7 @@
 const React = require('react')
 const Def = require('../default')
 
-function show ({place, id}) {
+function show ({place}) {
 
     return (
         <Def>
@@ -23,9 +23,9 @@ function show ({place, id}) {
                   <p>Located in {place.city}, {place.state} and serving {place.cuisines}</p>
                 </div>
 
-                <a href={`/places/${id}/edit`} className="btn btn-warning">Edit</a>     
+                <a href={`/places/${place.id}/edit`} className="btn btn-warning">Edit</a>     
 
-                <form method="POST" action={`/places/${id}?_method=DELETE`}> 
+                <form method="POST" action={`/places/${place.id}?_method=DELETE`}> 
                   <button type="submit" className="btn btn-danger">Delete</button>
                 </form> 
      
