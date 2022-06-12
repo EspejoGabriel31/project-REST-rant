@@ -9,6 +9,9 @@ function show ({place}) {
             <div className='row' id='main-section'>
               <div className='col-sm-6'>
                 <img src={place.pic} alt={place.name} />
+                <h3>
+                    Located in {place.city}, {place.state}
+                </h3>
               </div>
               <div className='col-sm-6'>
                 <h1>
@@ -20,7 +23,10 @@ function show ({place}) {
                 </div>
                 <div>
                   <h2>Description</h2>
-                  <p>Located in {place.city}, {place.state} and serving {place.cuisines}</p>
+                  <h3>
+                    {place.showEstablished()}
+                  </h3>
+                  <h4>Serving {place.cuisines}</h4>
                 </div>
 
                 <a href={`/places/${place.id}/edit`} className="btn btn-warning">Edit</a>     
