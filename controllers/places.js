@@ -1,5 +1,4 @@
 const router = require('express').Router()
-// const places_array = require('../models/places.js')
 const db = require('../models')
 
 //INDEX
@@ -12,8 +11,6 @@ router.get('/', (req, res) => {
     console.log(err)
     res.render('error404')
   })
-  // res.send('GET /places stub')
-  // res.render('places/index', { places })
 })
 
 //CREATE
@@ -23,29 +20,20 @@ router.post('/', (req, res) => {
     res.redirect('/places')
   })
   .catch(err => {
-    if (err & err.name == 'ValidationError'){
+    if (err && err.name == 'ValidationError'){
       let message = 'Validation Error: '
+      for ( var field in err.errors){
+        message += `${field} was ${err.errors[field].value}. `
+        message += `${err.errors[field].message}`
+      }
+      console.log('Validation error message', message)
       //TODO: Generate error messages (s)
-      console.log(message)
-      res.render('place/new', { message })
+      res.render('places/new', { message })
     }
     else {
       res.render('error404')
     }
   })
-  // res.send('POST /places stub')
-  // if (!req.body.pic) {
-  //   // Default image if one is not provided
-  //   req.body.pic = 'http://placekitten.com/400/400'
-  // }
-  // if (!req.body.city) {
-  //   req.body.city = 'Anytown'
-  // }
-  // if (!req.body.state) {
-  //   req.body.state = 'USA'
-  // }
-  // places.push(req.body)
-  // res.redirect('/places')
 })
 
 //NEW
@@ -63,17 +51,6 @@ router.get('/:id', (req, res) => {
     console.log('err', err)
     res.render('error404')
   })
-  // res.send('GET /places/:id stub')
-  // let id = Number(req.params.id)
-  // if(isNaN(id)){
-  //   res.render('error404')
-  // }
-  // else if(!places_array[id]){
-  //   res.render('error404')
-  // }
-  // else{
-  //   res.render('places/show', { place: places_array[id], id})
-  // }
 })
 
 //UPDATE
