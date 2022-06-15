@@ -44,7 +44,9 @@ router.get('/new',(req, res) => {
 //SHOW
 router.get('/:id', (req, res) => {
   db.Place.findById(req.params.id)
+  .populate('comments')
   .then(place => {
+    console.log(place.comments)
     res.render('places/show', { place })
   })
   .catch(err => {
@@ -84,6 +86,35 @@ router.get('/:id/edit', (req,res) =>{
     //     place: places_array[req.params.id],
     //     index: req.params.id
     // })
+})
+
+//POST COMMENT
+router.post('/:id/comment', (req, res) => {
+  if(req.body.rant){
+    req.body.rant = true
+  }
+  else{
+    req.body.rant = false
+  }
+  db.Place.findById(req.params.id)
+  .then(place => {
+    db.Comment.create(req.body)
+    .then(comment =>{
+      place.comments.push(comment.id)
+      place.save()
+      .then(() => {
+        res.redirect(`/places/${req.params.id}`)
+      })
+    })
+    .catch(err =>{
+      res.render('error404')
+    })
+  })
+})
+
+//DELETE COMMENT
+router.delete('/:id/comment/:commentId', (req, res) => {
+  res.send('GET /places/:id/comment/:commentId stub')
 })
 
 module.exports = router
